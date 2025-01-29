@@ -13,15 +13,14 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "category")
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
+
     @NotNull
     private String name;
 
-    @OneToMany
-    @JoinTable(name = "category_games",
-            joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "game_id"))
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
     private List<Game> games;
 }
