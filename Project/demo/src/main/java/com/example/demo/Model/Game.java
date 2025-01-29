@@ -3,6 +3,8 @@ package com.example.demo.Model;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -25,9 +27,11 @@ public class Game {
     private String img_url;
 
     @Column(nullable = false)
-    private double price;
+    private BigDecimal price;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
+    @ManyToMany()
+    private List<User> users;
 }
